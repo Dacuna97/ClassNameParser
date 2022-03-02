@@ -1,0 +1,24 @@
+import React, { Component } from 'react';
+
+import onClickButtonBloomreach from 'utils-use/onClickButtonBloomreach';
+import parse from 'html-react-parser';
+
+export default class CardsTitleDescriptionButton extends Component {
+  onClickButton = () => {
+    const { card, router } = this.props;
+    onClickButtonBloomreach(card, router);
+  };
+
+  render() {
+    const { card, icon } = this.props;
+    return (
+      <div className={`${styles['card-title-description-item']} card-title-description-item-bg-color`} style={{ cursor: !card.externalLink && !card.internalLinkId ? 'auto' : 'pointer' }} onClick={this.onClickButton}>
+        {icon && <img src={icon} alt='card-item-image' />}
+        <div className={`${styles['card-item-title']}`}>
+          <div className={`font-base`}>{card.title}</div>
+        </div>
+        <div className={`${styles['card-item-description']} font-base`}>{card.description && parse(DOMPurify.sanitize(card.description, { ADD_ATTR: ['target'] }))}</div>
+      </div>
+    );
+  }
+}

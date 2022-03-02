@@ -1,0 +1,13 @@
+import React from 'react';
+import styles from './styles.module.scss';
+
+const Loading = (props) => {
+  const { loading } = props;
+  return (
+    <div className={!loading ? 'container--loading--hidden' : 'container--loading'}>
+      <div className={`${styles['loading']}`} />
+    </div>
+  );
+};
+
+export default Loading;
